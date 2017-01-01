@@ -25,14 +25,14 @@ class HomeController extends Controller
     public function index(Post $post)
     {
         return view('home', [
-            'posts' => $post->where('user_id', auth()->user()->id)->get()
+            'posts' => $post->all() //where('user_id', auth()->user()->id)->get()
         ]);
     }
 
     public function update($id)
     {
         $post = Post::find($id);
-        $this->authorize('update-post', $post);
+        $this->authorize('who-see', $post);
 
         return view('update-post', [
             'post' => $post
