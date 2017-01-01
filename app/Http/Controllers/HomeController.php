@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        return view('home');
+        return view('home', [
+            'posts' => $post->where('user_id', auth()->user()->id)->get()
+        ]);
     }
+
+    public function update($id)
+    {
+        $post = Post::find($id);
+        $this->authorize('update-post', $post);
+
+        return view('update-post', [
+            'post' => $post
+        ]);
+    }
+
 }
