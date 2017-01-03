@@ -14,6 +14,7 @@
                 
                 <div class="panel-body">
                     @forelse($posts as $post)
+                    @can('view_post', $post)
                         <div class="media">
                             <div class="media-left">
                                 <a href="#">
@@ -25,18 +26,20 @@
                                 <p>{{$post->content}}</p>
                                 <p><small><b>Created by:</b> {{$post->user->name}}</small> <small><b>at</b> {{$post->created_at}}</small></p>
                                 <a class="btn btn-warning" href="#" role="button">Visualizar</a>
-                                @can('who-see', $post)
+                                {{-- @can('who-see', $post) --}}
                                     <a class="btn btn-primary" href="{{url("post/$post->id/update")}}" role="button">Editar</a>
                                     <a class="btn btn-success" href="#" role="button">Publicar</a>
                                     <a class="btn btn-danger" href="#" role="button">Deletar</a>
-                                @endcan
+                                {{-- @endcan --}}
                             </div>
                         </div>
                         <hr>
+                    @endcan
                     @empty
                         <p>Empty..</p>
                     @endforelse
                 </div>
+                {!! $posts->links() !!}
             </div>
         </div>
     </div>

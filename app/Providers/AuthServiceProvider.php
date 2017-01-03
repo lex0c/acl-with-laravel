@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Post' => 'App\Policies\PostPolicy'
+        //'App\Post' => 'App\Policies\PostPolicy'
     ];
 
     /**
@@ -33,10 +33,12 @@ class AuthServiceProvider extends ServiceProvider
         // });
 
         $permissions = Permission::with('roles')->get();
-        foreach ($permissions as $permission) {
-            $gate->define($permission->name, function(User $user, Post $post) use ($permission) {
+
+        foreach($permissions as $permission) {
+            $gate->define($permission->name, function(User $user) use ($permission) {
                 return $user->hasPermission($permission);
             });
         }
+
     }
 }
