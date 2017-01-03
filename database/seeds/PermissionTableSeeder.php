@@ -13,8 +13,24 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         Permission::create([
-            'name'  => 'Deleter',
-            'label' => 'Deleter the post'
+            'name'  => 'view_post',
+            'label' => 'View a the post.'
         ]);
+        
+        Permission::create([
+            'name'  => 'create_post',
+            'label' => 'Create a the post.'
+        ]);
+
+        Permission::create([
+            'name'  => 'edit_post',
+            'label' => 'Edit a the post.'
+        ]);
+
+        Permission::create([
+            'name'  => 'Delete_post',
+            'label' => 'Delete a the post.'
+        ]);
+
     }
 }

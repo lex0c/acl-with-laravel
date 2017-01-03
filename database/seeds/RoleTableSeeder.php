@@ -14,7 +14,17 @@ class RoleTableSeeder extends Seeder
     {
         Role::create([
             'name'  => 'Publisher',
-            'label' => 'Post publisher'
+            'label' => 'Publisher of posts.'
+        ]);
+
+        Role::create([
+            'name'  => 'Admin',
+            'label' => 'System administrator.'
+        ]);
+
+        Role::create([
+            'name'  => 'Manager',
+            'label' => 'System manager.'
         ]);
     }
 }
